@@ -42,11 +42,11 @@ if __name__ == "__main__":
     plt.xlabel("pixel column")
     plt.ylabel("frame")
 
-    plt.figure()
+    plt.figure() #plot the histogram of the raw brightness values of the frames, with 256 bins
     plt.hist(frames.ravel(), bins=256)
     plt.title("raw brightness")
 
-    plt.figure()
+    plt.figure() #plot the histogram of the log brightness values of the frames, with 256 bins
     plt.hist(np.log(frames + 1).ravel(), bins=256)
     plt.title("log brightness")
     plt.show()

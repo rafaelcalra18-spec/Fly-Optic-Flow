@@ -3,11 +3,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 from step01_load import load_video
 
-if __name__ == "__main__":
-    frames_1, fps_1 = load_video("data/IMG_0130.mov")
-    frames_2, fps_2 = load_video("data/fan_slomo.mov")
+cap = cv2.VideoCapture('data/fan_normal.mov')
+frames_start = 240
+frames_end = 264
+list_time = [] #list of times of each frame (when they appear in the video)
 
-    print(f'frames_1.shape: {frames_1.shape}, Duration: {4770/fps_1} seconds')
-    print(f'frames_2.shape: {frames_2.shape}, Duration: {3784/fps_2} seconds') #3784 is the number of frames in the video, so this calculates the duration of the video in seconds
-    print(f'fps_1: {fps_1}, fps_2: {fps_2}') #print the fps of the two videos
-    
+cap.set(cv2.CAP_PROP_POS_FRAMES, frames_start)
+
+for i in range(frames_start, frames_end):
+    cap.read()
+    time = cap.get(cv2.CAP_PROP_POS_MSEC)
+    list_time.append(time)
+
+
+if __name__ == "__main__":
+    frames, fps = load_video("data/fan_normal.mov")
+     #24 consecutive frames from frames_start, each titled with its timestamp
+    fig, axes = plt.subplots(4, 6, figsize=(15, 8))
+    for k, ax in enumerate(axes.ravel()):
+        ax.imshow(frames[frames_start + k], cmap="gray")
+        ax.set_title(f"{list_time[k]:.2f} ms", fontsize=8)
+        ax.axis("off")
+    plt.tight_layout()
+    plt.show()
