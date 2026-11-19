@@ -3,7 +3,7 @@ from step03_lowpass import lowpass
 import cv2
 import numpy as np
 
-frames, fps = load_video('data/turn.mov')
+frames, fps = load_video('data/still.mov')
 filtered = lowpass(frames, 0.1, fps)
 diff = frames - filtered
 
