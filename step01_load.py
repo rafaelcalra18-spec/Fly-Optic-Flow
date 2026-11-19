@@ -50,4 +50,3 @@ if __name__ == "__main__":
     plt.hist(np.log(frames + 1).ravel(), bins=256)
     plt.title("log brightness")
     plt.show()
-

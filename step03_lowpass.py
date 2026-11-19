@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from step01_load import load_video
 
 # turns a signal into a transformed output
 # the transformed output is what a neuron (pixel) stores
